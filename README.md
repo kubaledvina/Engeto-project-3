@@ -11,7 +11,7 @@ Jedná se o klasickou hru **Piškvorky (Tic Tac Toe)** pro dva hráče.
 - Hráč vybere číslo odpovídající volnému poli a jeho symbol (`X` nebo `O`) se tam umístí.
 - Hra končí, pokud některý hráč umístí **3 své symboly za sebou** (horizontálně, vertikálně nebo diagonálně).
 - Pokud se zaplní všechna pole a nikdo nevyhraje, hra končí **remízou**.
-- **Sleduje se čas hry**, tedy jak dlouho trvalo, než se hra dokončila.
+- **Sleduje se čas hry**: na konci hry se zobrazí jak dlouho trvala hra.
 
 ---
 
