@@ -1,9 +1,11 @@
 """
-main.py: druhý projekt do Engeto Online Python Akademie
+main.py: druhý projekt - Engeto Online Python Akademie
 
 author: Jakub Ledvina
 email: ledvinajakub@seznam.cz
+discord: ledvinaj
 """
+
 import time
 
 separator = "=" * 30
@@ -19,16 +21,7 @@ def playing_board(board):
         print("|", row[0], "|", row[1], "|", row[2], "|")
     print("+---+---+---+")
     print(separator)
-"""
-#testovací výpis
-test = [
-        ["0", " ", "x"],
-        ["0", " ", "x"],
-        ["0", " ", "x"],
-    ]
 
-playing_board(test)
-"""
 
 def check_game(board, player):
     """
@@ -41,12 +34,12 @@ def check_game(board, player):
     #kontrola symbolů v řádkách jestli jsou tři stejné symboly v řádku
     for row in board:
         if row[0] == row[1] == row[2] == player:
-            return True  #pokud ano hráč vyhrál
+            return True  #pokud ano, hráč vyhrál
 
     ##kontrola symbolů ve sloupcích jestli jsou tři stejné symboly ve sloupci
     for column in range(3):
         if board[0][column] == board[1][column] == board[2][column] == player:
-            return True #pokud ano hráč vyhrál
+            return True #pokud ano, hráč vyhrál
 
     #kontrola diagonály zleva -> do prava dolů
     if board[0][0] == board[1][1] == board[2][2] == player:
@@ -54,20 +47,11 @@ def check_game(board, player):
 
     #kontrola diagonály zprava -> doleva dolů
     if board[0][2] == board[1][1] == board[2][0] == player:
-        return True #pokud ano hráč vyhrál
+        return True #pokud ano, hráč vyhrál
 
     #pokud žádná podmínka neplatí vrátí False(nevyhrál) hra pokračuje
     return False
-"""
-#testovací výpis
-test = [
-        ["O", " ", "x"],
-        ["O", "O", "O"],
-        ["O", " ", "x"],
-    ]
 
-print(check_game(test, "O"))
-"""
 
 def draw(board):
     """
@@ -82,16 +66,7 @@ def draw(board):
                 return False
 
     return True
-"""
-#test remízy
-test = [
-    ["X", "O", "X"],
-    ["X", "X", "O"],
-    ["O", "X", "O"]
-]
 
-print(draw(test)) 
-"""
 
 def tic_tac_toe():
     """
@@ -136,14 +111,18 @@ def tic_tac_toe():
                 if choice < 1 or choice > 9:
                     print("Invalid input! Enter a number between 1 and 9.")
                     continue
+
             except ValueError:
                 print("Invalid input! Enter a number between 1 and 9.")
                 continue
+
             #kontrola obsazeného pole
             row, column = (choice - 1) // 3, (choice - 1) % 3
+
             if board[row][column] != " ":
-                print("This spot is already taken! Try again")
+                print("This spot is already taken! Try again.")
                 continue
+
             break  #pokud je tah správný ukončí smyčku a pokračuje dál
 
         board[row][column] = player  #aktualizace hrací desky
@@ -152,25 +131,21 @@ def tic_tac_toe():
             playing_board(board)
             print(f"Congratulations, the player {player} WON!")
             print(separator)
-            #konec měření času
-            end_time = time.time()
-            result_time = end_time - start_time
-            round_time = round(result_time, 2)
-            print(f"Game time: {round_time: }s")
+
             break
         elif draw(board):
             playing_board(board)
             print("It's a DRAW!")
             print(separator)
-            # konec měření času
-            end_time = time.time()
-            result_time = end_time - start_time
-            round_time = round(result_time, 2)
-            print(f"Game time: {round_time: }s")
 
             break
 
         turn += 1
+
+    #konec měření času, vypsání výsledného času
+    end_time = time.time()
+    print(f"Game time: {round(end_time - start_time, 2)}s.")
+    print(separator)
 
 if __name__ == "__main__":
     tic_tac_toe()
