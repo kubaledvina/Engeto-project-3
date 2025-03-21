@@ -10,15 +10,17 @@ import time
 
 separator = "=" * 30
 
+
 def playing_board(board):
     '''
     definování hrací desky pomocí cyklu
+
     :param board: herní deska 3x3
     '''
     print(separator)
     for row in board:
         print("+---+---+---+")
-        print("|", row[0], "|", row[1], "|", row[2], "|")
+        print("| " + " | ".join(row) + " |")
     print("+---+---+---+")
     print(separator)
 
@@ -31,25 +33,25 @@ def check_game(board, player):
     :param player: Symbol pro hráče 'X' nebo 'O'
     :return: True pokud hráč vyhrál jinak False
     """
-    #kontrola symbolů v řádkách jestli jsou tři stejné symboly v řádku
+    # kontrola symbolů v řádkách jestli jsou tři stejné symboly v řádku
     for row in board:
         if row[0] == row[1] == row[2] == player:
-            return True  #pokud ano, hráč vyhrál
+            return True  # pokud ano, hráč vyhrál
 
     ##kontrola symbolů ve sloupcích jestli jsou tři stejné symboly ve sloupci
     for column in range(3):
         if board[0][column] == board[1][column] == board[2][column] == player:
-            return True #pokud ano, hráč vyhrál
+            return True  # pokud ano, hráč vyhrál
 
-    #kontrola diagonály zleva -> do prava dolů
+    # kontrola diagonály zleva -> do prava dolů
     if board[0][0] == board[1][1] == board[2][2] == player:
-        return True #pokud ano hráč vyhrál
+        return True  # pokud ano hráč vyhrál
 
-    #kontrola diagonály zprava -> doleva dolů
+    # kontrola diagonály zprava -> doleva dolů
     if board[0][2] == board[1][1] == board[2][0] == player:
-        return True #pokud ano, hráč vyhrál
+        return True  # pokud ano, hráč vyhrál
 
-    #pokud žádná podmínka neplatí vrátí False(nevyhrál) hra pokračuje
+    # pokud žádná podmínka neplatí vrátí False(nevyhrál) hra pokračuje
     return False
 
 
@@ -90,22 +92,22 @@ def tic_tac_toe():
     print("Let's start the game")
     print("-" * 30)
 
-    #vytvoření prázdné hrací desky - i vytváři řádky, j vytváří sloupce
+    # vytvoření prázdné hrací desky - i vytváři řádky, j vytváří sloupce
     board = [[" " for i in range(3)] for j in range(3)]
-    #prní hráč X druhý hráč O
+    # prní hráč X druhý hráč O
     players = ["X", "O"]
-    #sleduje který hráč je na řadě
+    # sleduje který hráč je na řadě
     turn = 0
-    #začátek měřění času hry
+    # začátek měřění času hry
     start_time = time.time()
 
-    #hlavní smyčka hry
+    # hlavní smyčka hry
     while True:
-        playing_board(board)  #aktualní stav hrací desky
-        player = players[turn % 2] #určení hráče který je aktuálně na řadě
+        playing_board(board)  # aktualní stav hrací desky
+        player = players[turn % 2]  # určení hráče který je aktuálně na řadě
 
         while True:
-            #hráčovo volba
+            # hráčovo volba
             try:
                 choice = int(input(f"Player {player} | Please enter your move number (1-9): "))
                 if choice < 1 or choice > 9:
@@ -116,16 +118,16 @@ def tic_tac_toe():
                 print("Invalid input! Enter a number between 1 and 9.")
                 continue
 
-            #kontrola obsazeného pole
+            # kontrola obsazeného pole
             row, column = (choice - 1) // 3, (choice - 1) % 3
 
             if board[row][column] != " ":
                 print("This spot is already taken! Try again.")
                 continue
 
-            break  #pokud je tah správný ukončí smyčku a pokračuje dál
+            break  # pokud je tah správný ukončí smyčku a pokračuje dál
 
-        board[row][column] = player  #aktualizace hrací desky
+        board[row][column] = player  # aktualizace hrací desky
 
         if check_game(board, player):
             playing_board(board)
@@ -142,14 +144,11 @@ def tic_tac_toe():
 
         turn += 1
 
-    #konec měření času, vypsání výsledného času
+    # konec měření času, vypsání výsledného času
     end_time = time.time()
     print(f"Game time: {round(end_time - start_time, 2)}s.")
     print(separator)
 
+
 if __name__ == "__main__":
     tic_tac_toe()
-
-
-
-
