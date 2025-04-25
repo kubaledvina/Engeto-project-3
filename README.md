@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 Pusť skript v příkazové řádce pomocí:
 
-python scraper.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=2&xnumnuts=2101" "vysledky_budejce.csv"
+python main.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=2&xnumnuts=2101" "vysledky_budejce.csv"
 
 - URL musí být v uvozovkách. 
 - Výstupní soubor bude CSV obsahující hlavičku a jeden řádek za každou obec s jejími výsledky.
